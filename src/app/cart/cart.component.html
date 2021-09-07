@@ -1,0 +1,47 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-1">
+        My Cart
+      </h1>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let productItem of productItems">
+          <td>
+            <article class="media">
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img [src]="productItem.image">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                </div>
+                  <p class="title is-4">{{productItem.productName}}</p>
+              </div>
+            </article>
+          </td>
+          <td>{{productItem.price}}</td>
+          <td>{{ productItem.quantity}}</td>
+          <td>{{productItem.totalAmount}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <a [routerLink]="['/products']" class="button is-success"> Continue Shopping</a> &nbsp;&nbsp;
+    <a [routerLink]="['/checkout']"class="button is-success"> Proceed to CheckOut</a>
+  </div>
+</section>

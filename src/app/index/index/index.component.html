@@ -1,1 +1,43 @@
-<p>index works!</p>
+<section class="hero is-medium">
+  <div class="columns is-mobile is-multiline">
+    <div class="column is-12 is-12-mobile">
+      <div class="hero-body" style="background-image: url('https://demo.saleor.io/media/collection-backgrounds/clothing.jpg');">
+        <h1 class="title is-3" style="color: #21125e;"> Buy Best Electronic Product From All Of The World</h1>
+        <p class="subtitle is-5 mt-3" style="color: #21125e;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore voluptatem nulla </p>
+        <a [routerLink]="['/products']" class="button is-primary is-rounded" style="align-items: center;">Shop Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="title is-4"> FEATURED</div>
+  <div class="columns is-mobile is-multiline">
+      <div class="column is-3 is-3-mobile" *ngFor="let item of productList">
+        <div class="has-background-light">
+          <figure class="image is-flex" style="justify-content: center;">
+            <img [src]="item.imageUrl"  alt="item.productName" class="image is-128x128">
+          </figure>
+        </div>
+        <br>
+        <div>
+          <span class="title is-6"><a [routerLink]="['details', item.productId]">{{item.productName|uppercase}}</a></span>
+          <hr>
+          <span>{{ item.description }}</span>
+          <p><strong>{{'$'+item.price}}</strong></p>
+        </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <h1 class="title is-4"> SHOP BY CATEGORIES</h1>
+  <div class="columns is-mobile">
+    <div class="column is-6 is-12-mobile" >
+      <img src="https://demo.saleor.io/media/category-backgrounds/accessories.jpg" alt="" srcset="">
+      <h3 class="title is-5 mt-2">Accessories</h3>
+    </div>
+    <div class="column is-6 is-12-mobile" >
+      <img src="https://demo.saleor.io/media/category-backgrounds/accessories.jpg" alt="" srcset="">
+      <h3 class="title is-5 mt-2">Groceries</h3>
+    </div>
+  </div>
+</section>

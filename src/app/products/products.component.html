@@ -1,0 +1,33 @@
+<section class="hero has-background-light">
+  <div class="hero-body">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li>Products</li>
+        </ul>
+      </nav>
+      <h1 class="title is-3">
+        Products
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="columns is-mobile is-multiline">
+      <div class="column is-3 is-3-mobile" *ngFor="let item of productItems">
+        <div class="has-background-light">
+          <figure class="image is-flex" style="justify-content: center;">
+            <img [src]="item.imageUrl"  alt="item.productName" class="image is-128x128">
+          </figure>
+        </div>
+        <br>
+        <div>
+          <span class="title is-6"><a [routerLink]="['/details', item.productId]">{{item.productName|uppercase}}</a></span>
+          <hr>
+          <span>{{ item.description }}</span>
+          <p><strong>{{'$'+item.price}}</strong></p>
+        </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,281 @@
+<section class="section">
+  <div class="columns is-mobile">
+    <div class="column is-8 is-6-mobile">
+      <hr>
+      <h1 class="title is-4">SHIPPING ADDRESS</h1>
+      <div class="columns is-mobile">
+        <div class="column is-4">
+            <button class="button" type="button" (click)="modalOpen()">
+              ADD NEW ADDRESS
+            </button>
+        </div>
+        <div class="column is-4">
+          <div class="block">
+            <h3 class="title is-6">OLD ADDRESS</h3>
+            <p>{{firstName}}</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- <h1 class="title is-4">BILLING ADDRESS</h1>
+      <input type="checkbox" class="checkbox" name="billing_address" id="billing_address"> &nbsp; <span>Same as Shipping Address</span>
+      <hr>
+      <div class="columns is-mobile">
+        <div class="column is-4">
+            <button class="button" type="button" (click)="modalOpen()">
+              ADD NEW ADDRESS
+            </button>
+        </div>
+        <div class="column is-4">
+          <div class="block">
+            <p>J... D..
+              1....................
+              49855, MICHIGAN
+              MI, United States of America
+            </p>
+          </div>
+        </div>
+      </div> -->
+      <hr>
+      <a [routerLink]="['/payment']" class="button is-primary">PROCEED TO PAYMENT</a>
+    </div>
+    <div class="column is-4 is-6-mobile mt-4">
+      <div class="card has-background-primary">
+        <header class="card-header">
+          <p class="card-header-title title is-4 has-text-white">
+            Cart Summary
+          </p>
+          <button class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </header>
+        <div class="card-content">
+          <div class="content" *ngFor="let productItem of productItems">
+            <section class="media">
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img [src]="productItem.image" alt="productItem.productName">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p class="title is-5 has-text-white">{{productItem.productName}}</p>
+                  <span class="has-text-white">Quantity: {{productItem.quantity}}</span> &nbsp;
+                  <hr>
+                  <!-- <p class="subtitle is-5">Subtotal: </p> <br> -->
+                  <h1 class="title is-5"> Total: ${{productItem.price}}</h1>
+
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- shipping address  -->
+<div class="modal is-active" *ngIf="openModal">
+  <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Add New Shipping Address</p>
+        <button class="delete" aria-label="close" (click)="closeModal()"></button>
+      </header>
+      <section class="modal-card-body">
+        <form action="#">
+
+          <div class="field is-horizontal">
+             <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="First Name">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-user"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Last Name">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-user"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="text" placeholder="Company Name">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="text" placeholder="Phone Number">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-phone"></i>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Address Line 1">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Address Line 2">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="text" placeholder="City">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-city"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <div class="select">
+                    <select>
+                      <option value="Country">Select Country</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+         </div>
+         <button class="button is-primary" type="button">ADD</button> &nbsp;
+         <button class="button is-danger" type="button" (click)="closeModal()">Cancel</button>
+        </form>
+      </section>
+    </div>
+</div>
+
+<!-- billing address  -->
+<div class="modal is-active" *ngIf="openModal">
+  <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Add New Shipping Address</p>
+        <button class="delete" aria-label="close" (click)="closeModal()"></button>
+      </header>
+      <section class="modal-card-body">
+        <form action="#">
+
+          <div class="field is-horizontal">
+             <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="First Name" [(ngModel)]="firstName">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-user"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Last Name" [(ngModel)]="lastName">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-user"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="email" placeholder="Email" [(ngModel)]="email">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-email"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="text" placeholder="Phone Number" [(ngModel)]="phone">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-phone"></i>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Address Line " [(ngModel)]="address">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Address Line 2">
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="text" placeholder="City" [(ngModel)]="city">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-city"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <div class="select">
+                    <select [(ngModel)]="country">
+                      <option value="Country">Select Country</option>
+                      <option value="Ghana">Ghana</option>
+                      <option value="Nigeria">Nigeria</option>
+                      <option value="South Africa">South Africa</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+         </div>
+         <button class="button is-primary" type="button" (click)="closeModal()">ADD</button> &nbsp;
+         <button class="button is-danger" type="button" (click)="closeModal()">Cancel</button>
+        </form>
+      </section>
+    </div>
+</div>

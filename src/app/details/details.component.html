@@ -1,0 +1,98 @@
+<section class="section">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a [routerLink]="['/products']">Products</a></li>
+      <li>{{productData.productName}}</li>
+    </ul>
+  </nav>
+
+  <div class="columns is-mobile">
+    <div class="column is-8 is-6-mobile">
+      <div class="is-flex mt-5" style="justify-content: center;">
+      <img [src]="productData.imageUrl" alt="productData.productName" class="image is-128x128">
+      </div>
+    </div>
+    <div class="column is-4 is-6-mobile">
+      <div>
+        <h1 class="title is-4">{{productData.productName}}</h1>
+        <span><strong>Price: $ {{productData.price}}</strong></span>
+        <hr>
+        <span class="has-text-danger" *ngIf="changePrice > 0"> AMOUNT TO PAY: $ {{changePrice}}</span> <br><br>
+        <div>
+
+          <form class="mt-1">
+            <div class="field">
+              <label for="Quantity" class="has-text-info">Select Quantity</label>
+              <div class="control">
+                  <input type="number" [(ngModel)]="itemQuantity" class="input" name="quantity" (change)="calculatePrice()" min="0" placeholder="enter the quantity you want">
+              </div>
+            </div>
+            <div class="foeld">
+              <div class="control">
+                <input type="submit" value="ADD TO CART" class="button is-info" type="button" (click)="activateActions()">
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cart Modal -->
+<div class="modal is-active" *ngIf="activateModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Item Added to Cart</p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img [src]="productData.imageUrl" alt="" srcset="">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p class="title is-5">{{productData.productName}}</p>
+            <p>Quantity: {{itemQuantity}}</p>
+          </div>
+        </div>
+      </article>
+      <article class="media">
+        <figure class="media-left">
+          <p class="icon is-64x64">
+            <button class="delete"></button>
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <div class="columns is-mobile">
+              <div class="column is-6">
+                <span class="title is-5">Price: ${{changePrice}}</span>
+              </div>
+              <!-- <div class="column is-6">
+                <div class="field">
+                  <label for="quantity">Quantity</label>
+                  <div class="control">
+                    <input type="number" class="input" placeholder="{{itemQuantity}}" disabled>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+    <footer class="modal-card-foot">
+      <!-- <a [routerLink]="['/checkout',productData.productId]" class="button is-primary">PROCEED TO CHECKOUT</a> -->
+      <a [routerLink]="['/cart']" class="button is-info" type="button">Go to Cart</a>
+      <a [routerLink]="['/products']" class="button is-primary" type="button">Continue Shopping</a>
+      <button class="button is-danger" type="button" (click)="closeModal()">Cancel</button>
+    </footer>
+  </div>
+</div>
